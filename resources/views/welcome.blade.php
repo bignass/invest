@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    MoreThanBillion.com
+                    MoreThanBillion
                 </div>
 
                 <div class="links">
