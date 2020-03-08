@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center">Home</h1>
-
+    <div class="row">
+        <div class="col-12 text-center"><img src="{{asset('storage/uploads/money_pile_dribble_1.gif')}}" alt=""></div>
+    </div>
 </div>
 @endsection
