@@ -24,3 +24,6 @@ Route::get('/dashboard', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/edit/user', 'UserController@edit')->name('user.edit');
+Route::post('/edit/user', 'UserController@update')->name('user.update');
