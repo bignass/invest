@@ -13,10 +13,10 @@ class UserController extends Controller
     if (Auth::user()) {
       $user = User::find(Auth::user()->id);
 
-      if ($user) {
+      if ($user && $user->email_verified_at) {
         return view('pages.user.edit')->withUser($user);
       } else {
-        return redirect()->back();
+        return redirect('/email/verify');
       }
     } else {
       return redirect()->back();
@@ -47,6 +47,9 @@ class UserController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
 
+        if (Auth::user()->email != $request['email']) {
+          $user->email_verified_at = null;
+        }
         $user->save();
 
         $request
