@@ -52,7 +52,9 @@ class UserController extends Controller
         }
         $user->save();
 
-        $request->session()->flash('success', 'Your details have now been updated!');
+        $request
+          ->session()
+          ->flash('success', 'Your details have now been updated!');
         return redirect()->back();
       } else {
         return redirect()->back();
