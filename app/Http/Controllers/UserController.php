@@ -34,17 +34,20 @@ class UserController extends Controller
       if (Auth::user()->email === $request['email']) {
         $validate = $request->validate([
           'name' => 'required|min:3',
+          'last_name' => 'required|min:3',
           'email' => 'required|email'
         ]);
       } else {
         $validate = $request->validate([
           'name' => 'required|min:3',
+          'last_name' => 'required|min:3',
           'email' => 'required|email|unique:users'
         ]);
       }
 
       if ($validate) {
         $user->name = $request['name'];
+        $user->last_name = $request['last_name'];
         $user->email = $request['email'];
 
         if (Auth::user()->email != $request['email']) {
