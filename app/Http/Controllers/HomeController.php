@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -25,8 +24,12 @@ class HomeController extends Controller
    */
   public function index()
   {
+    /*
+     *Patikrina ar vartotojas prisijungęs, ir jei prisijungęs redirectina į kitą home page
+     *kur gali matyti savo postus ir ką followina
+     */
     if (Auth::user()) {
-      return view('dashboard');
+      return view('pages.home.home_user');
     } else {
       return view('pages.home.home');
     }
