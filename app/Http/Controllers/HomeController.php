@@ -29,7 +29,8 @@ class HomeController extends Controller
      *kur gali matyti savo postus ir ką followina
      */
     if (Auth::user()) {
-      return view('pages.home.home_user');
+      return redirect('/posts');
+      //return view('pages.home.home_user');
     } else {
       return view('pages.home.home');
     }

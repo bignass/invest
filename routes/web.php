@@ -28,3 +28,13 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/edit/user', 'UserController@edit')->name('user.edit');
 Route::post('/edit/user', 'UserController@update')->name('user.update');
+Route::get('/user/{id}', 'UserController@show')->name('user.show');
+
+Route::resource('/posts', 'PostController');
+
+Route::get('/follow/create/{id}', 'FollowController@create')->name(
+  'follow.create'
+);
+Route::delete('/follow/{follow}', 'FollowController@destroy')->name(
+  'follow.destroy'
+);

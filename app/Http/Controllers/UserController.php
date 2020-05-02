@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Follow;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -18,6 +19,35 @@ class UserController extends Controller
       } else {
         return redirect('/email/verify');
       }
+    } else {
+      return redirect()->back();
+    }
+  }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  \App\User  $user
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+    if (Auth::user()) {
+      $user = User::where('id', $id)->findOrFail($id);
+      $element = Auth::user()
+        ->following->where('other_user_id', $id)
+        ->first();
+
+      $isFollowing = Auth::user()->isFollowing($id);
+
+      return view(
+        'pages.user.other_user',
+        compact('user', 'isFollowing', 'element')
+      );
+
+      /*
+        ['user' => $user],
+        ['isFollowing' => Auth::user()->isFollowing($id)]*/
     } else {
       return redirect()->back();
     }

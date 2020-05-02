@@ -16,7 +16,7 @@
         <div class="col-lg-5">
           <h1 class="font-weight-light">More Than Billion</h1>
           <p>
-            More than a billion? That is how much money you will have after using our services! Don't know how to trade stocks? No worries though, there are a lot of professional traders using our services, so you will be able to copy their trades and build your success in the stock market!
+            More than a billion? That is how much money you will have after using our services! Don't know how to trade stocks? No worries though, there are a lot of professional stock, forex, indeces traders using our services, so you will be able to copy their trades and build your success in the markets!
           </p>
           <a class="btn btn-dark" style="background-color: #40992b !important; 
                                             border-color: #40992b; !important;
@@ -68,8 +68,9 @@
     </div>
     <!-- /.container -->
 
+    
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-3 bg-dark footer fixed-bottom">
       <div class="container">
         <p class="m-0 text-center text-white">
           Copyright &copy; MoreThanBillion 2020
@@ -79,8 +80,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
   </body>
 </html>
 @endsection
