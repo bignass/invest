@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="More than a billion? That is how much money you will have after using our services! Don't know how to trade stocks? No worries though, there are a lot of professional stock, forex, indeces traders using our services, so you will be able to copy their trades and build your success in the markets!">
-
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -33,7 +34,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="background: #eef0ef">
+<body class="container" style="background: #eef0ef">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
@@ -93,7 +94,7 @@
             </div>
         </nav>
 
-        <main class="pt-4">
+        <main class="pt-4 mt-5">
             @yield('content')
         </main>
     </div>

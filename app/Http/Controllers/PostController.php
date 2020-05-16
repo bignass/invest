@@ -6,6 +6,7 @@ use App\Post;
 use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -17,20 +18,18 @@ class PostController extends Controller
    */
   public function index()
   {
-    // gali pažiūrėkt tik prisijungę vartotojai
-    // if (Auth::user()) {
-    //   //$user = User::find($user_id);
-    //   /*$user = Auth::user()
-    //     ->following->select('follows.*', 'id')
-    //     ->get();*/
-    //   $posts = Post::all(); //paima visus postus atbuline tvarka
-
-    //   //return $user;
-
-    //   return view('pages.posts')->with('posts', $posts);
-    // } else {
-    //   return redirect('/login');
-    // }
+    //gali pažiūrėkt tik prisijungę vartotojai
+    if (Auth::user()) {
+      
+      $users = DB::table('follows')  -> where('user_id', Auth::user()->id)->pluck('other_user_id');
+      $posts = Post::whereIn('user_id', $users)->get(); //paima visus postus atbuline tvarka
+      
+      //$posts = DB::table('posts') -> get();
+      //$posts = Post::all();
+      return view('pages.posts')->with('posts', $posts);
+    } else {
+      return redirect('/login');
+    }
   }
 
   /**
