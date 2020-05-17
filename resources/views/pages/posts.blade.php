@@ -34,12 +34,6 @@
                     <div class="col">
                         <a href="/user/{{$post->user->id}}">{{$post->user->name}} {{$post->user->last_name}}</a>
                     </div>
-                    <div class="col">
-                        <form class="float-right" action="{{'/'}}" method="">
-                            
-                            <input type="submit" value="Unfollow" class="btn btn-outline-dark btn-sm">
-                        </form>
-                    </div>
                     @endif
                 </div>
             </div>

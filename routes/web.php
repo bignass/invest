@@ -29,6 +29,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/edit/user', 'UserController@edit')->name('user.edit');
 Route::post('/edit/user', 'UserController@update')->name('user.update');
 Route::get('/user/{id}', 'UserController@show')->name('user.show');
+Route::get('/screener', function(){return view('pages.screener');});
+Route::get('/chart', function(){return view('pages.chart');});
 
 Route::resource('/posts', 'PostController');
 

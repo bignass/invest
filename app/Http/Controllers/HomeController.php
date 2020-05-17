@@ -26,10 +26,13 @@ class HomeController extends Controller
   {
     /*
      *Patikrina ar vartotojas prisijungęs, ir jei prisijungęs redirectina į kitą home page
-     *kur gali matyti savo postus ir ką followina
+     *kur gali matyti savo savo statistiką
      */
     if (Auth::user()) {
-      return redirect('/posts');
+
+      
+
+      return view('pages.user.stats');
       //return view('pages.home.home_user');
     } else {
       return view('pages.home.home');

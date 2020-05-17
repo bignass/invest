@@ -21,11 +21,12 @@ class PostController extends Controller
     //gali pažiūrėkt tik prisijungę vartotojai
     if (Auth::user()) {
       
-      $users = DB::table('follows')  -> where('user_id', Auth::user()->id)->pluck('other_user_id');
-      $posts = Post::whereIn('user_id', $users)->get(); //paima visus postus atbuline tvarka
+      $users = DB::table('follows') -> where('user_id', Auth::user()->id) -> pluck('other_user_id');
       
-      //$posts = DB::table('posts') -> get();
-      //$posts = Post::all();
+      $users->push(Auth::user()->id);
+      
+      $posts = Post::whereIn('user_id', $users)->orderBy('id', 'desc')->get(); //paima visus postus atbuline tvarka
+      
       return view('pages.posts')->with('posts', $posts);
     } else {
       return redirect('/login');
