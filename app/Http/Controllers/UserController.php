@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -39,10 +40,10 @@ class UserController extends Controller
         ->first();
 
       $isFollowing = Auth::user()->isFollowing($id);
-
+      $followsCount = $this->fcount($id);
       return view(
         'pages.user.other_user',
-        compact('user', 'isFollowing', 'element')
+        compact('user', 'isFollowing', 'element', 'followsCount')
       );
 
       /*
@@ -95,5 +96,13 @@ class UserController extends Controller
     } else {
       return redirect()->back();
     }
+  }
+
+  public function fcount($id)
+  {
+    $myFollows = DB::table('follows') -> where('other_user_id', $id) -> pluck('user_id');
+      $skaicius = $myFollows->count();
+      
+      return $skaicius;
   }
 }

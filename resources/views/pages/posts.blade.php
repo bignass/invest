@@ -1,6 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if($suggestions != NULL)
+<div class="float-right pr-5 mr-1">
+    <div class="card mb-3 box-shadow ">
+    <div class="card-header text-center">
+        <h5><dt>Suggestions</dt></h5>
+    </div>
+    
+    <table style="max-width:300px">
+        @foreach($suggestions as $user)
+        <tr style="border: 1px solid #ddd">
+            
+           <td class=" align-middle " style="width: 250px">
+               
+        
+            <h5><a style="color:black;" href="/user/{{$user['id']}}">{{ $user['first'] }} {{ $user['second'] }}</a></h5>
+            </td>
+            <td class="align-middle " style="width: 60px">
+                <form action="{{'/follow/create/'.$user['id']}}" method="GET">
+                    <input type="submit" value="Follow" class="btn btn-success btn-sm border">
+                </form>
+            
+           </td>
+        </tr>
+        @endforeach
+    </table>
+</div>
+    </div>
+    
+</div>@endif
+
 <div class="container">
     
     <form action="posts/create" method="GET">
@@ -13,6 +44,8 @@
             </div>
           </div>
     </form>
+        <div class="card-deck mb-3 text-left">
+        <div class="card mb-4 box-shadow">
 
 @if (count($posts) > 0)
     @foreach ($posts as $post)
@@ -49,6 +82,11 @@
 <h3 class="text-center"> There are no posts 🙄 </h3>        
     
 @endif
+        </div>
+        
 </div>
+
+
+
 
 @endsection

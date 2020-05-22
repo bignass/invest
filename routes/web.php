@@ -32,7 +32,11 @@ Route::get('/user/{id}', 'UserController@show')->name('user.show');
 Route::get('/screener', function(){return view('pages.screener');});
 Route::get('/chart', function(){return view('pages.chart');});
 
+
 Route::resource('/posts', 'PostController');
+Route::get('/post/{id}', 'FollowController@create')->name(
+  'follow.create');
+
 
 Route::get('/follow/create/{id}', 'FollowController@create')->name(
   'follow.create'
