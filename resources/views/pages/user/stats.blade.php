@@ -2,14 +2,12 @@
 
 @section('content')
     <div class="container">
-        @if ($goal != null)    
             <div>
                 <div class="progress" style="height: 10px;">
                     <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="text-center" style="font-size: small;">{{$goal}} of your goal</p>
+                <p class="text-center" style="font-size: small;">{{$goal ?? 0}} of your goal</p>
             </div>
-        @endif
 
         <div class="row m-4">
             <canvas class="col" style="max-width: 45%" id="myChart"></canvas>
@@ -117,23 +115,13 @@
             </div>
         </div>
     </div>
-    <style>
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0; }
-    </style>
     <script>
-
         let myChart = document.getElementById('myChart').getContext('2d');
 
         let profitChart = new Chart(myChart, {
             type: 'line',
-            
             data: {
-                labels:['', '', '', '', '', '', ''],
+                labels:['Pirmdienis', 'Antradienis', 'Trečiadienis', 'Ketvirtadienis', 'Penktadienis', 'Šeštadienis', 'Sekmadienis'],
                 datasets:[{
                     label:'',
                     data:[
@@ -149,19 +137,7 @@
                     fill: false
                 }]
             },
-            options: {
-                legend: {
-                    display: false,
-                }
-            }
+            options: {}
         });
-
-
-        let btn = document.querySelector("#app > main > div > div:nth-child(3) > div > div > div > a")
-        btn.addEventListener('click', buy);
-        function buy(e){
-            e.preventDefault();
-            if()
-        }
     </script>
 @endsection

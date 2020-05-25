@@ -32,7 +32,6 @@ class PostController extends Controller
 
       $suggestions =  $this->suggest_to_follow();
 
-
       return view('pages.posts')->with('posts', $posts)->with('suggestions',$suggestions);
     } else {
       return redirect('/login');
@@ -182,4 +181,7 @@ public function followers_count()
     
     return $suggestions;
   }
+
+ 
+  
 }

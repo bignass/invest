@@ -40,11 +40,13 @@
             <input type="text" name="body" class="form-control" placeholder="What's on your mind?" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">   
                 @csrf
-            <button class="btn btn-success" type="submit">Post</button>
+              <button class="btn btn-success" type="submit">Post</button>
             </div>
-        </div>
+          </div>
     </form>
-    
+        <div class="card-deck mb-3 text-left">
+        <div class="card mb-4 box-shadow">
+
 @if (count($posts) > 0)
     @foreach ($posts as $post)
         <div class="card mb-4">

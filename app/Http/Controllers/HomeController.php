@@ -30,9 +30,9 @@ class HomeController extends Controller
      */
     if (Auth::user()) {
 
-      $goal = Auth::user()->goal;
+      
 
-      return view('pages.user.stats')->with('goal',$goal);
+      return view('pages.user.stats');
       //return view('pages.home.home_user');
     } else {
       return view('pages.home.home');
