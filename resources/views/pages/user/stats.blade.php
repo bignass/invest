@@ -66,14 +66,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row m-2">
-                        <form>
                             <input type="text" class="m-1 col-1 form-control text-center" value="" placeholder="Stock" required>
                             <input type="date" class="m-1 col-2 form-control text-center" placeholder="date" required>
                             <input type="number" class="m-1 col-2 form-control text-center" placeholder="Number of shares" required>
                             <input type="number" class="m-1 col-2 form-control text-right" placeholder="Cost per share" required>
                             <input type="text" class="m-1 col form-control" placeholder="Why buying?"></input>
                             <button type="submit" class="m-1 col-1 btn btn-success align-middle">BUY<span class="material-icons align-middle">keyboard_arrow_up</span></button>
-                        </form>
                     </div>
                     
                 </div>
