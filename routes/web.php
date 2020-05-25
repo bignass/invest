@@ -44,3 +44,5 @@ Route::get('/follow/create/{id}', 'FollowController@create')->name(
 Route::delete('/follow/{follow}', 'FollowController@destroy')->name(
   'follow.destroy'
 );
+
+Route::get('/search', 'SearchController@search')->name('search');

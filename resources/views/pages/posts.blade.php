@@ -44,9 +44,7 @@
             </div>
           </div>
     </form>
-        <div class="card-deck mb-3 text-left">
-        <div class="card mb-4 box-shadow">
-
+        
 @if (count($posts) > 0)
     @foreach ($posts as $post)
         <div class="card mb-4">
