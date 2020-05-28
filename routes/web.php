@@ -26,6 +26,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 
+
+
 Route::get('/edit/user', 'UserController@edit')->name('user.edit');
 Route::post('/edit/user', 'UserController@update')->name('user.update');
 Route::get('/user/{id}', 'UserController@show')->name('user.show');
@@ -46,3 +48,6 @@ Route::delete('/follow/{follow}', 'FollowController@destroy')->name(
 );
 
 Route::get('/search', 'SearchController@search')->name('search');
+
+Route::get('/additional_info', 'UserAdditionalInfoController@index');
+Route::put('/addInfo', 'UserAdditionalInfoController@update');

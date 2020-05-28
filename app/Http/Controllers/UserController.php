@@ -41,6 +41,7 @@ class UserController extends Controller
 
       $isFollowing = Auth::user()->isFollowing($id);
       $followsCount = $this->fcount($id);
+      
       return view(
         'pages.user.other_user',
         compact('user', 'isFollowing', 'element', 'followsCount')

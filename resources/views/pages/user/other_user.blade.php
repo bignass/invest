@@ -1,13 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    img {
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  max-width: 15%;
+  height: auto;
+}
+.followai {
+    position: absolute;
+    right: 25%;
+    top:20%;
+}
+
+.about{
+    position: absolute;
+    left: 40%;
+    right: 35%;
+    top:20%;
+    bottom: 10%;
+    font-style: italic;
+    
+}
+
+</style>
 <div class="container">
     <head >
+        
     <div class="jumbotron bg-muted ">
+        <div>
+        <img  src={{ asset('storage/uploads/users/'. $user->img) }} alt="image" enctype="multipart/form-data">
+        
+        </div>
+        <div class="about"><h6>{{ $user->about }}</h6></div>
         <h1 class="font-weight-bold float-left align-middle">{{$user->name}} {{$user->last_name}}</h1>
         
+        
        
-    <div class="float-right align-middle">
+    <div class="followai">
     @if ($isFollowing == true)
         <form action="{{'/follow/'.$element->other_user_id}}" method="POST"> 
             {{method_field('DELETE')}}
@@ -20,9 +51,14 @@
             <input type="submit" value="Follow" class="btn btn-success btn-lg border">
         </form>
     @endif
-    <h6 class="text-center">{{$followsCount}} follows </h6>
+    <h5 class="text-center">{{$followsCount}} followers </h5>
     </div>
 </div>
 </head>
 </div>
 @endsection
+<style>
+    img {
+  border-radius: 8px;
+}
+</style>

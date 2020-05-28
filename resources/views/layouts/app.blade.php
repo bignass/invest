@@ -24,31 +24,12 @@
 
 
 <style>
-    .topnav-centered{
-        float: none;
-        position: absolute;
-        top: 25%;
-        left: 30%;
-        right: 30%;
-        width: 35%;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        background-color: white;
-        background-image: url('searchicon.png');
-        background-position: 10px 10px; 
-        background-repeat: no-repeat;
-        
-        -webkit-transition: width 0.4s ease-in-out;
-        transition: width 0.4s ease-in-out;
-}
 
 .search-box{
     position:absolute;
     z-index: 20;
     left: 30%;
-    width: 35%;
+    width: 30%;
     top: 80%;
     background-color: rgb(255, 255, 255);
     transition: 0.3s;
@@ -87,7 +68,7 @@
 
                 <!-- Search input box and button -->
                 
-                <input type="text" id="search" name="search" class="topnav-centered"  placeholder="Search people..." >
+                <input type="text" id="search" name="search" class="form-control"  placeholder="Search people..." >
                 <!-- JSQUERY for search results -->
                 <script type="text/javascript">
                     $('#search').on('keyup',function(){
