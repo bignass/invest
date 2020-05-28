@@ -51,3 +51,5 @@ Route::get('/search', 'SearchController@search')->name('search');
 
 Route::get('/additional_info', 'UserAdditionalInfoController@index');
 Route::put('/addInfo', 'UserAdditionalInfoController@update');
+
+Route::get('/changeInfo', 'ChangeUserInfoController@index');
