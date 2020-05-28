@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -20,6 +21,38 @@
         gtag('config', 'UA-154129551-1');
     </script>
 
+<style>
+    .topnav-centered{
+        float: none;
+        position: absolute;
+        top: 25%;
+        left: 30%;
+        right: 30%;
+        width: 35%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+}
+
+.search-box{
+    position:absolute;
+    z-index: 20;
+    left: 30%;
+    width: 35%;
+    top: 80%;
+    background-color: rgb(255, 255, 255);
+    transition: 0.3s;
+}
+
+</style>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -43,6 +76,37 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'MoreThanBillion') }}
                 </a>
+                @guest
+                @else
+                 <!-- Search input box and button -->
+                 <input type="text" id="search" name="search" class="form-control"  placeholder="Search people..." >
+                 <!-- JSQUERY for search results -->
+                 <script type="text/javascript">
+                     $('#search').on('keyup',function(){
+                         $value=$(this).val();
+                         $.ajax({
+                         type : 'get',
+                         url  : '{{ URL::to('search') }}',
+                         data : {'search':$value},
+                         success:function(data){
+                             $('#usersList').fadeIn();
+                             $('#usersList').html(data);
+                         }
+                         })
+                     })
+                     $("*").click(function () {
+                     $('#usersList').hide();
+                     $("#search").attr("placeholder", "Search people...").val("");
+                     });
+                 </script>
+                 <!-- END of JSQUERY for search results -->
+  
+  <div id="usersList" class="search-box">
+      
+  </div>
+ 
+  <!-- END of search input box and button  -->
+  @endguest
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -105,3 +169,4 @@
     </div>
 </body>
 </html>
+
