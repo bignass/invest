@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -9,9 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154129551-1"></script>
     <script>
@@ -21,21 +19,6 @@
 
         gtag('config', 'UA-154129551-1');
     </script>
-
-
-<style>
-
-.search-box{
-    position:absolute;
-    z-index: 20;
-    left: 30%;
-    width: 30%;
-    top: 80%;
-    background-color: rgb(255, 255, 255);
-    transition: 0.3s;
-}
-
-</style>
 
 
     <!-- CSRF Token -->
@@ -52,50 +35,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    
-    
-    
 </head>
 <body style="background: #eef0ef">
-    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'MoreThanBillion') }}
                 </a>
-
-                <!-- Search input box and button -->
-                
-                <input type="text" id="search" name="search" class="form-control"  placeholder="Search people..." >
-                <!-- JSQUERY for search results -->
-                <script type="text/javascript">
-                    $('#search').on('keyup',function(){
-                        $value=$(this).val();
-                        $.ajax({
-                            type : 'get',
-                            url  : '{{ URL::to('search') }}',
-                            data : {'search':$value},
-                            success:function(data){
-                                $('#usersList').fadeIn();
-                                $('#usersList').html(data);
-                            }
-                        })
-                    })
-                    $("*").click(function () {
-                        $('#usersList').hide();
-                        $("#search").attr("placeholder", "Search people...").val("");
-                    });
-                </script>
-                <!-- END of JSQUERY for search results -->
-                
-                <div id="usersList" class="search-box">
-                    
-                </div>
-            
-                <!-- END of search input box and button  -->
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -149,14 +96,12 @@
                         @endguest
                     </ul>
                 </div>
-            </>
+            </div>
         </nav>
 
         <main class="pt-4 mt-5">
             @yield('content')
         </main>
-    
-
-   
+    </div>
 </body>
 </html>
