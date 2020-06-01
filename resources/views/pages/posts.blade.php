@@ -2,6 +2,15 @@
 
 @section('content')
 
+<style>
+     img {
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  max-width: 9%;
+  height: auto;
+}
+</style>
+
 @if($suggestions != NULL)
 <div class="float-right pr-5 mr-1">
     <div class="card mb-3 box-shadow ">
@@ -54,7 +63,7 @@
                 <div class="row">
                     @if($post->user->id == Auth::user()->id)
                     <div class="col">
-                        <p>{{$post->user->name}} {{$post->user->last_name}}</p>
+                        <p><img src={{ asset('storage/uploads/users/'. $post->user->img) }} alt="image" enctype="multipart/form-data"> {{$post->user->name}} {{$post->user->last_name}}</p>
                     </div>
                     <div class="col">
                         <form class="float-right" action="{{'/posts/'.$post->id}}" method="POST">
