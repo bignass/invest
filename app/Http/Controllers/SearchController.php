@@ -28,10 +28,10 @@ class SearchController extends Controller
             ->orWhere('last_name','LIKE','%'.$request->search.'%')->get();
             if($users)
             {
-                
+                $i=0;
                 foreach($users as $key => $user)
                 {
-                    
+                    if($i<=5){
                     $output.='<a class="card" href="/user/'.$user->id . '">'.
 
                     
@@ -43,6 +43,8 @@ class SearchController extends Controller
                     
 
                     '</a>';
+                    $i++;
+                    }
                 }
                 return Response($output);
                 
