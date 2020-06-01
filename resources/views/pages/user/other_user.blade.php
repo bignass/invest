@@ -19,15 +19,13 @@
     left: 40%;
     right: 35%;
     top:20%;
-    bottom: 10%;
+    bottom: 67%;
     font-style: italic;
     
 }
-
 </style>
-<div class="container">
-    <head >
-        
+
+<div class="container">       
     <div class="jumbotron bg-muted ">
         <div>
         <img  src={{ asset('storage/uploads/users/'. $user->img) }} alt="image" enctype="multipart/form-data">
@@ -54,11 +52,7 @@
     <h5 class="text-center">{{$followsCount}} followers </h5>
     </div>
 </div>
-</head>
+
+<a href="/other_user_posts/{{$user['id']}}" class="btn btn-dark form-control">Go to {{ $user->name }} posts</a>
 </div>
 @endsection
-<style>
-    img {
-  border-radius: 8px;
-}
-</style>

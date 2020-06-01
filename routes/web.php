@@ -53,3 +53,5 @@ Route::get('/additional_info', 'UserAdditionalInfoController@index');
 Route::put('/addInfo', 'UserAdditionalInfoController@update');
 
 Route::get('/changeInfo', 'ChangeUserInfoController@index');
+
+Route::get('/other_user_posts/{id}', 'OtherUserPostsController@posts');
