@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Trade;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +35,38 @@ class UserController extends Controller
   public function show($id)
   {
     if (Auth::user()) {
+      $trades = Trade::all()
+    ->where('user', $id)->whereNotNull('number_of_shares_sold')
+    ->sortByDesc('id');
+
+    $j=0;
+      $chartPriceArray = array();
+      $chartDateArray = array();
+    for($i=365; $i>=0; $i--){
+      $chartPrices = Trade::all()
+      ->where('user', $id)
+      ->whereNotNull('number_of_shares_sold')
+      ->where('close_time', '=', date('Y-m-d',strtotime(date("Y-m-d", time()) . " - $i day")));
+      
+      $chartDates = Trade::all()
+      ->where('user', $id)
+      ->whereNotNull('number_of_shares_sold')
+      ->where('close_time', '=', date('Y-m-d',strtotime(date("Y-m-d", time()) . " - $i day")))->pluck('close_time')->first();
+
+      $prsum = 0;
+      foreach($chartPrices as $o){
+        $prsum = ($o->close_price * $o->number_of_shares_sold)-($o->open_price * $o->number_of_shares_sold);
+      }
+      
+      if($chartDates){
+      $chartDateArray[$j] = $chartDates;
+      $chartPriceArray[$j] = $prsum;
+      $j++;
+      }
+    }
+    $chartDateArrayJ = json_encode($chartDateArray);
+    $chartPriceArrayJ = json_encode($chartPriceArray);
+
       $user = User::where('id', $id)->findOrFail($id);
       $element = Auth::user()
         ->following->where('other_user_id', $id)
@@ -45,7 +78,8 @@ class UserController extends Controller
       return view(
         'pages.user.other_user',
         compact('user', 'isFollowing', 'element', 'followsCount')
-      );
+      )->with('trades', $trades)->with('chartDateArrayJ',$chartDateArrayJ)
+      ->with('chartPriceArrayJ',$chartPriceArrayJ);;
 
       /*
         ['user' => $user],

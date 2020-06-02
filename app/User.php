@@ -17,7 +17,14 @@ class User extends Authenticatable implements MustVerifyEmail
    *
    * @var array
    */
-  protected $fillable = ['name', 'last_name', 'email', 'password', 'img', 'about']; 
+  protected $fillable = [
+    'name',
+    'last_name',
+    'email',
+    'password',
+    'img',
+    'about',
+  ];
 
   /**
    * The attributes that should be hidden for arrays.
@@ -32,7 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
    * @var array
    */
   protected $casts = [
-    'email_verified_at' => 'datetime'
+    'email_verified_at' => 'datetime',
   ];
 
   public function posts()
@@ -44,6 +51,11 @@ class User extends Authenticatable implements MustVerifyEmail
   public function following()
   {
     return $this->hasMany(Follow::class);
+  }
+
+  public function trades()
+  {
+    return $this->hasMany(Trade::class);
   }
 
   public function isFollowing($id)

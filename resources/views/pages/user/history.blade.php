@@ -1,37 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">       
-    <div class="jumbotron bg-muted ">
-        <div>
-        <img  src={{ asset('storage/uploads/users/'. $user->img) }} alt="image" enctype="multipart/form-data">
-        
+<div class="container">
+    <div>
+        <div class="progress" style="height: 10px;">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <div class="about"><h6>{{ $user->about }}</h6></div>
-        <h1 class="font-weight-bold float-left align-middle">{{$user->name}} {{$user->last_name}}</h1>
-        
-    <div class="followai">
-    @if ($isFollowing == true)
-        <form action="{{'/follow/'.$element->other_user_id}}" method="POST"> 
-            {{method_field('DELETE')}}
-            {{csrf_field()}} 
-            <input type="submit" value="Unfollow" class="btn btn-outline-dark btn-lg border">
-        </form>
-    @else
-        <form action="{{'/follow/create/'.$user->id}}" method="GET">
-            
-            <input type="submit" value="Follow" class="btn btn-success btn-lg border">
-        </form>
-    @endif
-    <h5 class="text-center">{{$followsCount}} followers </h5>
+        <p class="text-center" style="font-size: small;">{{$goal ?? 0}} of your goal</p>
     </div>
-</div>
-
-<a href="/other_user_posts/{{$user['id']}}" class="btn btn-dark form-control mt-0">User posts</a>
-
-@if ($trades->count() <= 0)
-    <h3 class="text-center m-3"> There are no trades in user's history 📉 </h3>        
-@else
+    @if ($trades->count() > 0)
         <div class="row mx-3">
             <canvas class="col" style="max-width: 45%" id="myChart"></canvas>
             <div class="col card">
@@ -108,6 +85,9 @@
             </div>
         </div>
         @endif
+    <div class="mx-3">
+        <a href="/" class="btn btn-dark form-control">Active Trades</a>
+    </div>
     @foreach ($trades as $trade)
         @if (($trade->close_price - $trade->open_price) >= 0)
             <div class="m-3">
@@ -148,34 +128,11 @@
                 </div>
             </div>
         </div>
-        
         @endif
     @endforeach
-
 </div>
-<style>
-    img {
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  max-width: 15%;
-  height: auto;
-}
-.followai {
-    position: absolute;
-    right: 25%;
-    top:20%;
-}
 
-.about{
-    position: absolute;
-    left: 40%;
-    right: 35%;
-    top:20%;
-    bottom: 67%;
-    font-style: italic;
-    
-}
-</style>
+<script type="text/javascript" src="{{ URL::asset('js/stats.js') }}"></script>
 <script>
     let myChart = document.getElementById("myChart").getContext("2d");
 

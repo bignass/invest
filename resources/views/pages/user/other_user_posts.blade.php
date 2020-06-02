@@ -16,7 +16,7 @@
     
 <div class="row">
 <div class="col-10"><h2 class="font-weight-bold">{{ $user->name }} {{ $user->last_name }} posts</h2></div>
-<div class="col-2"><a href="/user/{{ $user->id }}" class="btn btn-success">Back to profile</a></div>
+<div class="col"><a href="/user/{{ $user->id }}" class="btn btn-success form-control">Back to profile</a></div>
 </div>
 @if (count($posts) > 0)
     @foreach ($posts as $post)

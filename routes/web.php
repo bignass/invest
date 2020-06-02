@@ -24,9 +24,10 @@ Auth::routes(['verify' => true]);
  *})->name('home');
  */
 
-Route::get('/', 'HomeController@index')->name('home');
-
-
+Route::resource('/', 'TradesController');
+Route::get('/buy', 'TradesController@create');
+Route::get('/sell', 'TradesController@sell');
+Route::get('/history', 'TradesController@history');
 
 Route::get('/edit/user', 'UserController@edit')->name('user.edit');
 Route::post('/edit/user', 'UserController@update')->name('user.update');
