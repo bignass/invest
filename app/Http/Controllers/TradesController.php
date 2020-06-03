@@ -41,6 +41,11 @@ class TradesController extends Controller
         $prsum = 0;
         foreach($chartPrices as $o){
           $prsum = ($o->close_price * $o->number_of_shares_sold)-($o->open_price * $o->number_of_shares_sold);
+          for($j; $j<count($chartPriceArray); $j++)
+          $prsum += chartPriceArray[j];
+          foreach($chartPriceArray as $numb){
+            $prsum += $numb;
+          }
         }
         
         if($chartDates){
@@ -80,12 +85,14 @@ class TradesController extends Controller
       $prsum = 0;
       foreach($chartPrices as $o){
         $prsum = ($o->close_price * $o->number_of_shares_sold)-($o->open_price * $o->number_of_shares_sold);
+        foreach($chartPriceArray as $numb){
+          $prsum += $numb;
+        }
       }
-      
       if($chartDates){
-      $chartDateArray[$j] = $chartDates;
-      $chartPriceArray[$j] = $prsum;
-      $j++;
+        $chartDateArray[$j] = $chartDates;
+        $chartPriceArray[$j] = $prsum;
+        $j++;
       }
     }
     $chartDateArrayJ = json_encode($chartDateArray);
@@ -152,8 +159,8 @@ class TradesController extends Controller
 
   public function updateNotEqual($id, $nos, $pps, $notes){
     $trade = Trade::all()->where('id', $id)->first();
-      $trade->active_shares -= $nos;
-      $trade->save();
+    $trade->active_shares -= $nos;
+    $trade->save();
     
     $newTrade = new Trade;
     $newTrade->user = $trade->user;
