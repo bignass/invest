@@ -56,6 +56,9 @@ class UserController extends Controller
       $prsum = 0;
       foreach($chartPrices as $o){
         $prsum = ($o->close_price * $o->number_of_shares_sold)-($o->open_price * $o->number_of_shares_sold);
+        foreach($chartPriceArray as $numb){
+          $prsum += $numb;
+        }
       }
       
       if($chartDates){
